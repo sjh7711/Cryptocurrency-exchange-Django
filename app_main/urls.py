@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.main, name="main"),
     path('try_login', views.try_login, name="try_login"),
     path('get_value', views.get_value, name='get_value'),
+    #test
 ]
 
 # Register your models here.
