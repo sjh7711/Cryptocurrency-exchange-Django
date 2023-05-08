@@ -1,0 +1,31 @@
+{% load static %}
+<link rel = "stylesheet" type ="text/css" href ="{% static 'bootstrap.css' %}">
+
+<head>
+  <title>Button Click</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <button id="get-info">Get Information</button>
+  <div id="info"></div>
+
+  <script>
+      $(document).ready(function() {
+          $('#get-info').click(function() {
+              $.ajax({
+                  type: 'GET',
+                  url: '/check_account',
+                  data: {
+                      // 전송할 데이터를 여기에 작성합니다.
+                  },
+                  success: function(response) {
+                      $('#info').text(response);
+                  },
+                  error: function(response) {
+                      console.log(response);
+                  }
+              });
+          });
+      });
+  </script>
+</body>

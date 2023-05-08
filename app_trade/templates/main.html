@@ -1,0 +1,240 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <!-- 요기에 구글 머티리얼 아이콘 -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+    <title>Nav Bar</title>
+
+    
+  </head>
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--background-color);
+      padding: 8px 12px;
+    }
+    body { 
+      margin: 0;
+      background-color: var(--bodybackground-color);
+    }
+    .navbar__logo i {
+      color: var(--accent-color);
+      padding-left: 0;
+    }
+    a {
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    .navbar__menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding-left: 0;
+    }
+    .navbar__mesd {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding-left: 30;
+    }
+    
+    .navbar__menu li {
+      padding: 8px 30px;
+    }
+    .navbar__mesd li {
+      padding: 8px 80px;
+    }
+    .navbar__icons {
+      list-style: none;
+      display: flex;
+      color: var(--icons-color);
+      margin: 0;
+      padding-left: 0;
+    }
+    
+    .navbar__icons li {
+      padding: 8px 12px;
+      margin: 0;
+    }
+    
+  </style>
+  <body>    
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="width: 100%;height: 50px;position: fixed;">
+      
+
+      <div class="navbar__logo"; style=top:72%; position:fixed>
+        <i class="fas fa-blog"></i>
+          <a href = "/"> 
+            <img style="height: 30px; object-fit: contain"
+                src="https://cdn.upbit.com/upbit-web/images/upbit_logo.35a5b2a.svg">
+          
+      </div>
+
+      <ul class="navbar__menu">
+        <li><a href="#">거래소</li>
+        <li><a href="#">입출금</li>
+        <li><a href="#">투자내역</li>
+        <li><a href="#">개인정보</li>
+      </ul>
+
+      <ul class="navbar__icons">
+        <li><i class="fab fa-google"></i></li>
+        <li><i class="fab fa-slack"></i></li>
+      </ul>
+      
+      <a href="#" class="navbar__toggleBtn">
+        <i class="fas fa-hamburger"></i>
+      
+    </nav>
+  </header>
+  
+  
+                
+          
+      <div style="display: flex;">  
+      
+      
+      <div  id="coin-prices" style="display: block; background-color:seashell;  width: 500px; height: 1000px;margin-left: 270px;margin-top: 100px ;">
+      <div class="border" style="display: flex;background-color: wheat;width: 430px;height: 550px;justify-content: center;margin: 10px">
+      
+      <div class="border" style="display: block;background-color: darkgray;width: 380px;height: 530px;justify-content: center;margin: 10px">
+        
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">호가창</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">up</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">up</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">up</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">up</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">up</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">down</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">down</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">down</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">down</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        <div style="display:inline;display:flex; text-align : center;"><p style="width:300px;background-color: silver; margin: 4px;">down</p><div style="width: 60px;background-color: sienna;margin: 3px;"><p>거래량</p></div><br></div>
+        
+      </div><br>
+      <div class="border" style="display: block;background-color: darkgray;width: 380px;height: 530px;justify-content: center;margin: 10px"></div>
+    
+      
+      </div>
+      </div>
+
+      <div class= div_con id="coin-prices" style="display: flex;background-color:seashell;  width: 300px; height: 1000px;margin-left: 160px; margin-top: 100px;">
+              <div>
+                <a href="#" class="btc"> 비트코인(BTC): <span id="KRW-BTC"></span></a><br>
+                <a href="#" class="btc">이더리움(ETH): <span id="KRW-ETH"></span><br>
+                <a href="#" class="btc">네오(NEO): <span id="KRW-NEO"></span><br>
+                <a href="#" class="btc">메탈(MTL): <span id="KRW-MTL"></span><br>
+                <a href="#" class="btc">리플(XRP): <span id="KRW-XRP"></span><br>
+                <a href="#" class="btc">이더리움 클래식(ETC): <span id="KRW-ETC"></span><br>
+                <a href="#" class="btc">스테이터스네트워크토큰(SNT): <span id="KRW-SNT"></span><br>
+                <a href="#" class="btc">웨이브스(WAVES): <span id="KRW-WAVES"></span><br>
+                <a href="#" class="btc">넴(XEM): <span id="KRW-XEM"></span><br>
+                <a href="#" class="btc">퀀텀(QTUM): <span id="KRW-QTUM"></span><br>
+                <a href="#" class="btc">리스크(LSK): <span id="KRW-LSK"></span><br>
+                <a href="#" class="btc">스팀(STEEM): <span id="KRW-STEEM"></span><br>
+                <a href="#" class="btc">스텔라루멘(XLM): <span id="KRW-XLM"></span><br>
+                <a href="#" class="btc">아더(ARDR): <span id="KRW-ARDR"></span><br>
+                <a href="#" class="btc">아크(ARK): <span id="KRW-ARK"></span><br>
+                <a href="#" class="btc">스토리지(STORJ): <span id="KRW-STORJ"></span><br>
+                <a href="#" class="btc">그로스톨코인(GRS): <span id="KRW-GRS"></span><br>
+                <a href="#" class="btc">어거(REP): <span id="KRW-REP"></span><br>
+                <a href="#" class="btc">에이다(ADA): <span id="KRW-ADA"></span><br>
+                <a href="#" class="btc">스팀달러(SBD): <span id="KRW-SBD"></span><br>
+                <a href="#" class="btc">파워렛저(POWR): <span id="KRW-POWR"></span><br>
+                <a href="#" class="btc">비트코인 골드(BTG): <span id="KRW-BTG"></span><br>
+                <a href="#" class="btc">아이콘(ICX): <span id="KRW-ICX"></span><br>
+                <a href="#" class="btc">이오스(EOS): <span id="KRW-EOS"></span><br>
+                <a href="#" class="btc">트론(TRX): <span id="KRW-TRX"></span><br>
+                <a href="#" class="btc">시아코인(SC): <span id="KRW-SC"></span><br>
+                <a href="#" class="btc">온톨로지(ONT): <span id="KRW-ONT"></span><br>
+                <a href="#" class="btc">질리카(ZIL): <span id="KRW-ZIL"></span><br>
+                <a href="#" class="btc">폴리매쓰체인(POLYX): <span id="KRW-POLYX"></span><br>
+                <a href="#" class="btc">제로엑스(ZRX): <span id="KRW-ZRX"></span><br>
+                <a href="#" class="btc">룸네트워크(LOOM): <span id="KRW-LOOM"></span><br>
+                <a href="#" class="btc">비트코인 캐시(BCH): <span id="KRW-BCH"></span><br>
+                <a href="#" class="btc">베이직어텐션토큰(BAT): <span id="KRW-BAT"></span><br>
+                <a href="#" class="btc">아이오에스티(IOST): <span id="KRW-IOST"></span><br>
+                <a href="#" class="btc">리퍼리움(RFR): <span id="KRW-RFR"></span><br>
+                <a href="#" class="btc">시빅(CVC): <span id="KRW-CVC"></span><br>
+                <a href="#" class="btc">아이쿼(IQ): <span id="KRW-IQ"></span><br>
+                <a href="#" class="btc">아이오타(IOTA): <span id="KRW-IOTA"></span><br>
+                <a href="#" class="btc">하이퍼톤(HIFI): <span id="KRW-HIFI"></span><br>
+                <a href="#" class="btc">온톨로지가스(ONG): <span id="KRW-ONG"></span><br>
+                <a href="#" class="btc">네오가스(GAS): <span id="KRW-GAS"></span><br>
+                <a href="#" class="btc">세럼(UPP): <span id="KRW-UPP"></span><br>
+                <a href="#" class="btc">엘프(ELF): <span id="KRW-ELF"></span><br>
+                <a href="#" class="btc">카이버네트워크(KNC): <span id="KRW-KNC"></span><br>
+                <a href="#" class="btc">비트코인에스브이(BSV): <span id="KRW-BSV"></span><br>
+                <a href="#" class="btc">쎄타토큰(THETA): <span id="KRW-THETA"></span><br>
+                <a href="#" class="btc">쿼크체인(QKC): <span id="KRW-QKC"></span><br>
+                <a href="#" class="btc">비트토렌트(BTT): <span id="KRW-BTT"></span><br>
+                <a href="#" class="btc">모스코인(MOC): <span id="KRW-MOC"></span><br>
+                <a href="#" class="btc">엔진코인(ENJ): <span id="KRW-ENJ"></span><br>
+              </div>
+              <script>
+                //  초기 값 설정
+                
+                
+                    fetch('get_prices')
+                      .then(response => response.json())
+                      .then(data => {
+                        for (const [key, value] of Object.entries(data.prices)) {
+                          const span = document.querySelector(`#${key}`);
+                          if (span) {
+                            span.textContent = value;
+                          }
+                        }
+                      });
+                    
+                    // 일정 시간 간격으로 값 업데이트
+                    
+                    // setInterval(() => {
+                    //   fetch('get_prices')
+                    //     .then(response => response.json())
+                    //     .then(data => {
+                    //       for (const [key, value] of Object.entries(data.prices)) {
+                    //         const span = document.querySelector(`#${key}`);
+                    //         if (span) {
+                    //           span.textContent = value;
+                    //         }
+                    //       }
+                    //     });
+                    // }, 500); 
+                    
+                    
+                    
+                    
+                  
+                  
+      
+                  
+                     
+                
+              
+              
+
+            </script>
+      </div>
+    </div>        
+
+
+      
+    </div>
+  </body>
+</html>
+
+
