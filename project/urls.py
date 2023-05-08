@@ -21,19 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app_main.urls')),
     path('myinfo/', include('app_myinfo.urls')),
-<<<<<<< HEAD
     path('holdings/', include('app_holding.urls')),
     path('account/', include('app_account.urls')),
     path('tradelog/', include('app_tradelog.urls')),
     path('signup/', include('app_signup.urls')),
     path('myinfoedit/', include('app_myinfoedit.urls')),
     
-=======
-    #path('trade/', include('trade.urls')),
-    #path('signup/', include('signup.urls')),
-    path('holdings/', include('app_holdings.urls')),
-    path('tradelog/', include('app_tradelog.urls')),
-    path('account/', include('app_account.urls')),
->>>>>>> 2ea214c40537f790e5f85d441917e0b3f658310a
 ]
-
