@@ -1,7 +1,7 @@
 from .models import UserList
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .form import UserForm, User_Form
+from .form import User_Form
 
 @csrf_exempt
 def signup(request):
@@ -12,12 +12,8 @@ def signup(request):
             return render(request, 'exists.html')
         elif form.is_valid():
             form.save()
-        return redirect('login')
+        return redirect('main')
     else:
         form = User_Form()
-    return render(request, 'signup.html', {'form':form} )
+    return render(request, 'sign-up.html', {'form':form} )
 
-@csrf_exempt
-def login(request):
-    form = UserForm()
-    return render(request, 'login.html', {'form':form})

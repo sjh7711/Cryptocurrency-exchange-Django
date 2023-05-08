@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+  <div class="container my-3" style="white-space: pre-line;">
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>번호</th>
+                <th>코인명</th>
+                <th>개수</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in coins %}
+          <tr>
+              <td>{{i.coin_pk}}</td>
+              <td>{{i.coin_id}}</td>
+              <td>{{i.coin_amnt}}</td>
+              <td>{{i.coin_last_value}}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+    </table>
+</div>

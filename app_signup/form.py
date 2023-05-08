@@ -3,14 +3,6 @@ from django import forms
 from .models import UserList
 
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = UserList
-        fields = ['user_id', 'user_pw']
-        widgets = {
-            'user_pw' : forms.PasswordInput
-        }
-
 class User_Form(forms.ModelForm):
     user_pw_check = forms.CharField(label='', max_length=40, widget=forms.PasswordInput(attrs={'class':'form-control form-control-user','placeholder':'비밀번호를 재입력하세요.'}))
     class Meta:
