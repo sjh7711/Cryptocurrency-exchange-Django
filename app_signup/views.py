@@ -26,8 +26,8 @@ def forgot(request):
         form = Passwd_Form(request.POST)
         getuser = AuthUser.objects.filter(username=request.POST['username'], email=request.POST['email'],)
         if getuser.exists():
-            passwd = list(getuser.values_list('date_joined', flat=True))[0]
-            return render(request, 'get-passwd.html', {'password':passwd})
+            passwd = list(getuser.values_list('password', flat=True))[0]
+            return render(request, 'get-passwd.html', {'passwd':passwd})
     else:
         form = Passwd_Form()
     return render(request, 'forgot-passwd.html', {'form':form} )
