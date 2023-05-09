@@ -49,9 +49,8 @@ def get_value(request):
 
     # return the value as JSON
     return JsonResponse(result)
-    # get the value from wherever you store it (e.g. database, cache, etc.)
-
-
+    # get the value from wherever you store it (e.g. database, cache, etc.)\
+        
 # Create your views here.
 
 # topics = [
