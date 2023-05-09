@@ -53,8 +53,8 @@ def holding(request):
                         holding_dict_bot["coin_name"] = coin_data[j]["coin_id"][4:]
 
                         # 하단부 5.평가금액
-                        holding_dict_bot["eval_price"] = wallet_data[i]["wallet_coin_amnt"] * nowPrice["{}".format(coin_data[j]["coin_id"])]
-                        total_eval_price += wallet_data[i]["wallet_coin_amnt"] * nowPrice["{}".format(coin_data[j]["coin_id"])] # 총 평가금액
+                        holding_dict_bot["eval_price"] = (wallet_data[i]["wallet_coin_amnt"] / 10000) * nowPrice["{}".format(coin_data[j]["coin_id"])]
+                        total_eval_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * nowPrice["{}".format(coin_data[j]["coin_id"])] # 총 평가금액
                         # 하단부 6.수익률(%)
                         if wallet_data[i]["wallet_aver_price"] != 0:
                             holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])]*10000, wallet_data[i]["wallet_aver_price"])
@@ -63,12 +63,12 @@ def holding(request):
 
                 
                 # 하단부 2.보유수량 
-                holding_dict_bot["wallet_coin_amnt"] = wallet_data[i]["wallet_coin_amnt"]
+                holding_dict_bot["wallet_coin_amnt"] = wallet_data[i]["wallet_coin_amnt"] / 10000
                 # 하단부 3.매수평균가 
                 holding_dict_bot["wallet_aver_price"] = wallet_data[i]["wallet_aver_price"] / 10000
                 # 하단부 4.매수금액 
-                holding_dict_bot["buy_price"] = wallet_data[i]["wallet_coin_amnt"] * (wallet_data[i]["wallet_aver_price"] /10000)
-                total_buy_price += wallet_data[i]["wallet_coin_amnt"] * (wallet_data[i]["wallet_aver_price"] / 10000) # 총 매수 금액
+                holding_dict_bot["buy_price"] = (wallet_data[i]["wallet_coin_amnt"] / 10000) * (wallet_data[i]["wallet_aver_price"] /10000)
+                total_buy_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * (wallet_data[i]["wallet_aver_price"] / 10000) # 총 매수 금액
 
                 holding_list_bot.append(holding_dict_bot)
     
@@ -126,8 +126,8 @@ def holding(request):
                         holding_dict_bot["coin_name"] = coin_data[j]["coin_id"][4:]
 
                         # 하단부 5.평가금액
-                        holding_dict_bot["eval_price"] = wallet_data[i]["wallet_coin_amnt"] * nowPrice["{}".format(coin_data[j]["coin_id"])]
-                        total_eval_price += wallet_data[i]["wallet_coin_amnt"] * nowPrice["{}".format(coin_data[j]["coin_id"])] # 총 평가금액
+                        holding_dict_bot["eval_price"] = (wallet_data[i]["wallet_coin_amnt"] /10000) * nowPrice["{}".format(coin_data[j]["coin_id"])]
+                        total_eval_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * nowPrice["{}".format(coin_data[j]["coin_id"])] # 총 평가금액
                         # 하단부 6.수익률(%)
                         if wallet_data[i]["wallet_aver_price"] != 0:
                             holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])]*10000, wallet_data[i]["wallet_aver_price"])
@@ -136,12 +136,12 @@ def holding(request):
 
                 
                 # 하단부 2.보유수량 
-                holding_dict_bot["wallet_coin_amnt"] = wallet_data[i]["wallet_coin_amnt"]
+                holding_dict_bot["wallet_coin_amnt"] = wallet_data[i]["wallet_coin_amnt"] /10000
                 # 하단부 3.매수평균가 
                 holding_dict_bot["wallet_aver_price"] = wallet_data[i]["wallet_aver_price"] / 10000
                 # 하단부 4.매수금액 
-                holding_dict_bot["buy_price"] = wallet_data[i]["wallet_coin_amnt"] * (wallet_data[i]["wallet_aver_price"] /10000)
-                total_buy_price += wallet_data[i]["wallet_coin_amnt"] * (wallet_data[i]["wallet_aver_price"] / 10000) # 총 매수 금액
+                holding_dict_bot["buy_price"] = (wallet_data[i]["wallet_coin_amnt"] / 10000) * (wallet_data[i]["wallet_aver_price"] /10000)
+                total_buy_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * (wallet_data[i]["wallet_aver_price"] / 10000) # 총 매수 금액
 
                 holding_dict_bot2["{}".format(wallet_coin_pk)] = holding_dict_bot
     
