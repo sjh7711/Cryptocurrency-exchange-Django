@@ -15,7 +15,7 @@ import pyupbit
 @login_required
 @csrf_exempt
 def holding(request):
-    info_user_id=auth.get_user(request).id
+    info_user_pk=auth.get_user(request).id
 
     # 코인 정보 조회
     tickers = pyupbit.get_tickers(fiat="KRW")
