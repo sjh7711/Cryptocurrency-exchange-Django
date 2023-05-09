@@ -35,18 +35,19 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
+                                <h1 class="h4 text-gray-900 mb-4">Find the password for your account!</h1>
+                            </div><br>
                             <form method="post">
                                 {% csrf_token %}
                                 {{form.as_p}}
-                                <input type='submit' class="btn btn-primary btn-user btn-block" value="Register">
+                                <hr><hr>
+                                <input type='submit' class="btn btn-primary btn-user btn-block" value="Find!">
                                 <hr>
                             </form>
-                            <hr>
+                            <hr><br>
                             <div class="text-center">
-                                <a class="small" href="login">Already have an account? Login!</a>
-                            </div>
+                                <a class="small" href="/">Did you find the password? Login!</a>
+                            </div><br>
                         </div>
                     </div>
                 </div>

@@ -26,3 +26,22 @@ class User_Form(forms.ModelForm):
                 'placeholder':'이메일을 입력하세요.'
             })
         }
+
+class Passwd_Form(forms.ModelForm):
+    class Meta:
+        model = UserList
+        fields = ['user_id', 'user_pn', 'user_em']
+        widgets = {
+            'user_id':forms.TextInput(attrs={
+                'class':'form-control form-control-user',
+                'placeholder':'아이디를 입력하세요.'
+            }),
+            'user_pn':forms.TextInput(attrs={
+                'class':'form-control form-control-user',
+                'placeholder':'휴대폰 번호를 입력하세요'
+            }),
+            'user_em':forms.TextInput(attrs={
+                'class':'form-control form-control-user',
+                'placeholder':'이메일을 입력하세요.'
+            })
+        }

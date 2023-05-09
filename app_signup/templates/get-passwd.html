@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Coin On Register</title>
+    <title>Register Failed</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -34,18 +34,29 @@
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                         <div class="p-5">
+                            <br>
+                            <br>
+                            <br>
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h3 text-gray-900 mb-3">비밀번호를 찾았습니다!</h1>
                             </div>
-                            <form method="post">
-                                {% csrf_token %}
-                                {{form.as_p}}
-                                <input type='submit' class="btn btn-primary btn-user btn-block" value="Register">
-                                <hr>
-                            </form>
-                            <hr>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                             <div class="text-center">
-                                <a class="small" href="/">Already have an account? Login!</a>
+                            <form>
+                                {{password}}
+                            </form>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="text-center">
+                                <a class="small" href="/">Go to Login!</a>
                             </div>
                         </div>
                     </div>
