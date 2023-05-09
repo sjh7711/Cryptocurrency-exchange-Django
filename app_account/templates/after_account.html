@@ -37,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="trade">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'trade' %}">
                 <div class="sidebar-brand-text mx-3" style="font-size : 20pt">Coin On</div>
             </a>
 
@@ -46,33 +46,29 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/trade">
+                <a class="nav-link" href="{% url 'trade' %}">
                     <span style="font-size : 12pt">거래소</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/tradelog">
+                <a class="nav-link" href="{% url 'tradelog' %}">
                     <span style="font-size : 12pt">거래내역</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/holdings">
+                <a class="nav-link" href="{% url 'holding' %}">
                     <span style="font-size : 12pt">보유자산</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/account">
+                <a class="nav-link" href="{% url 'account' %}">
                     <span style="font-size : 12pt">입출금</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="useredit">
-                    <span style="font-size : 12pt">회원정보</span></a>
-            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -242,18 +238,3 @@
     <script src={% static "js/demo/datatables-demo.js" %}></script>
 
 </body>
-
-</html>
-    <div class="container">
-        <table class = "table table-bordered">
-            {%for data in krw_log_list%}
-                <tr>
-                    <td id="holding_KRW">입금/출금:{{data.cont_type}}KRW</td>
-                </tr>
-                <tr>
-                    <td id="total_buy_price">체결시간:{{data.cont_time}}KRW</td>
-                    <td id="total_eval_price">총금액:{{data.total_price}}KRW</td>
-                </tr>
-            {%endfor%}
-        </table>
-    </div>

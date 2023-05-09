@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import auth
-from .models import *
+from app_holding.models import *
 from app_holding.module import Calc
 
 import pyupbit
