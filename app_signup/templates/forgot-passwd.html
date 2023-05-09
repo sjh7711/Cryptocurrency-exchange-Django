@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Register Failed</title>
+    <title>Coin On Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -34,29 +34,20 @@
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                         <div class="p-5">
-                            <br>
-                            <br>
-                            <br>
                             <div class="text-center">
-                                <h1 class="h3 text-gray-900 mb-3">이미 존재하는 아이디입니다.</h1>
-                            </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                                <h1 class="h4 text-gray-900 mb-4">Find the password for your account!</h1>
+                            </div><br>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <hr><hr>
+                                <input type='submit' class="btn btn-primary btn-user btn-block" value="Find!">
+                                <hr>
+                            </form>
+                            <hr><br>
                             <div class="text-center">
-                            <a href="/signup/">Register Again!</a>
-                            </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <div class="text-center">
-                                <a class="small" href="/">Did you remember the account? Login!</a>
-                            </div>
+                                <a class="small" href="/">Did you find the password? Login!</a>
+                            </div><br>
                         </div>
                     </div>
                 </div>

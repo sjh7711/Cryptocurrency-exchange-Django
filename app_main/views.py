@@ -57,11 +57,11 @@ def get_value(request):
 #     coins = CoinList.objects.all()
 #     return render(request, "signup.html", {"coins":coins})
 
-# @csrf_exempt
-# def coinlist1(request):
-#     coins = CoinList.objects.all()
-#     print(request.POST)
-#     return render(request, "trade.html", {"coins":coins})
+@csrf_exempt
+def coinlist1(request):
+    coins = CoinList.objects.all()
+    print(request.POST)
+    return render(request, "trade.html", {"coins":coins})
 
 
 # Create your views here.

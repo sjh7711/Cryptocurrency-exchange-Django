@@ -3,8 +3,6 @@ from . import views
 from .views import *
 
 urlpatterns = [
-    #path('test01datas/', views.getTestDatas, name="test01datas"),
     path('', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
-    
+    path('forgot-passwd/', views.forgot, name='forgot')
 ]
