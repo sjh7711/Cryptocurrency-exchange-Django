@@ -11,7 +11,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -137,49 +136,8 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class MainUser(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.IntegerField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.IntegerField()
-    is_active = models.IntegerField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'main_user'
-
-
-class MainUserGroups(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(MainUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'main_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class MainUserUserPermissions(models.Model):  
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(MainUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'main_user_user_permissions'    
-        unique_together = (('user', 'permission'),)
-
-
 class TradeList(models.Model):
-    trade_pk = models.BigAutoField(primary_key=True)  
-    # The composite primary key (trade_pk, user_pk, coin_pk) found, that is not supported. The first column is selected.
+    trade_pk = models.BigAutoField(primary_key=True) 
     user_pk = models.IntegerField()
     coin_pk = models.IntegerField()
     tlog_cont_time = models.FloatField(blank=True, null=True)
@@ -199,7 +157,7 @@ class TradeList(models.Model):
 
 class UserList(models.Model):
     user_pk = models.AutoField(primary_key=True)  # The composite primary key (user_pk, user_id) found, that is not supported. The first column is selected.
-    user_id = models.CharField(max_length=40)
+    user_id = models.CharField(unique=True, max_length=40)
     user_pw = models.CharField(max_length=128)
     user_pn = models.CharField(max_length=40)
     user_em = models.CharField(max_length=40)
