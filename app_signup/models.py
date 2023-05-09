@@ -87,7 +87,8 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.PositiveSmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, 
+blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
@@ -127,7 +128,7 @@ class DjangoSession(models.Model):
 
 
 class TradeList(models.Model):
-    trade_pk = models.BigAutoField(primary_key=True) 
+    trade_pk = models.BigAutoField(primary_key=True)  # The composite primary key (trade_pk, user_pk, coin_pk) found, that is not supported. The first column is selected.
     user_pk = models.IntegerField()
     coin_pk = models.IntegerField()
     tlog_cont_time = models.FloatField(blank=True, null=True)
@@ -143,19 +144,6 @@ class TradeList(models.Model):
         managed = False
         db_table = 'trade_list'
         unique_together = (('trade_pk', 'user_pk', 'coin_pk'),)
-
-
-class UserList(models.Model):
-    user_pk = models.AutoField(primary_key=True)  # The composite primary key (user_pk, user_id) found, that is not supported. The first column is selected.
-    user_id = models.CharField(unique=True, max_length=40)
-    user_pw = models.CharField(max_length=128)
-    user_pn = models.CharField(max_length=40)
-    user_em = models.CharField(max_length=40)
-
-    class Meta:
-        managed = False
-        db_table = 'user_list'
-        unique_together = (('user_pk', 'user_id'),)
 
 
 class WalletList(models.Model):
