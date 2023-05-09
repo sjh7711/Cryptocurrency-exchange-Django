@@ -25,9 +25,9 @@ def account(request):
     krw_log_list = []
     # j = 0 
 
-    # if not krw_wallet_data.exists() or krw_wallet_data[0]["wallet_addr"] is None:
+    if not krw_wallet_data.exists() or krw_wallet_data[0]["wallet_addr"] is None:
 
-    if krw_wallet_data[0]["wallet_addr"] == '0':
+    # if krw_wallet_data[0]["wallet_addr"] == '0':
         return render(request, "before_account.html")
     
     else:
@@ -83,16 +83,32 @@ nowtime = time()
 @csrf_exempt
 def Cong(request):
     info_user_pk=auth.get_user(request).id
+    # krw_wallet_data = WalletList(user_pk='{}'.format(info_user_pk), coin_pk=0, \
+    #                                 wallet_addr='KRW', wallet_coin_amnt=10000000, wallet_aver_price=1)
+    # krw_wallet_data.save()
+    WalletList.objects.create(user_pk='{}'.format(info_user_pk), coin_pk=0, \
+                                    wallet_addr='KRW', wallet_coin_amnt=10000000, wallet_aver_price=1)
 
-    # new_krw_wallet_data = WalletList(user_pk='{}'.format(info_user_pk), coin_pk=0, wallet_addr='KRW', wallet_coin_amnt=100000000, wallet_aver_price=1)
-    # new_krw_wallet_data.save()
-    krw_wallet_data = WalletList.objects.values().filter(user_pk='{}'.format(info_user_pk), coin_pk=0)
-    krw_wallet_data.update(wallet_addr='KRW', wallet_coin_amnt=100000000, wallet_aver_price=1)
+    # krw_trade_data = TradeList(user_pk='{}'.format(info_user_pk), coin_pk=0,tlog_cont_time=time(), tlog_cont_type='입금',\
+    #                             tlog_coin_amnt=100000000, tlog_trade_price=1, tlog_total_price=100000000, tlog_charge=0,\
+    #                             tlog_earn_rate=0, tlog_order_time=time())
+    # krw_trade_data.save()
 
-    krw_trade_data = TradeList(user_pk='{}'.format(info_user_pk), coin_pk=0,tlog_cont_time=time(), tlog_cont_type='입금',\
+    TradeList.objects.create(user_pk='{}'.format(info_user_pk), coin_pk=0,tlog_cont_time=time(), tlog_cont_type='입금',\
                                 tlog_coin_amnt=100000000, tlog_trade_price=1, tlog_total_price=100000000, tlog_charge=0,\
                                 tlog_earn_rate=0, tlog_order_time=time())
-    krw_trade_data.save()
+
+    # wallet_insert = WalletList(user_pk='{}'.format(info_user_pk), coin_pk=1, wallet_addr='0', wallet_coin_amnt=0, wallet_aver_price=0)
+    # wallet_insert.save()
+
+    coin_data = CoinList.objects.values().exclude(coin_pk=0)
+
+    for i in range(0, len(coin_data)):
+        WalletList.objects.create(user_pk='{}'.format(info_user_pk), coin_pk='{}'.format(coin_data[i]["coin_pk"]),\
+                                   wallet_addr='0', wallet_coin_amnt=0, wallet_aver_price=0)
+        # wallet_insert = WalletList(user_pk='{}'.format(info_user_pk), coin_pk='{}'.format(coin_data[i]["coin_pk"]),\
+        #                            wallet_addr='0', wallet_coin_amnt=0, wallet_aver_price=0)
+        # wallet_insert.save()
 
     return render(request, "Cong.html")
 
