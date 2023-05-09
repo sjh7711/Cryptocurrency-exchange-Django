@@ -26,5 +26,5 @@ urlpatterns = [
     path('tradelog/', include('app_tradelog.urls')),
     path('signup/', include('app_signup.urls')),
     path('myinfoedit/', include('app_myinfoedit.urls')),
-    
+    path('trade/', include('app_trade.urls')),
 ]
