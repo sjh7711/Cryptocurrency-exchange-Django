@@ -7,7 +7,6 @@ urlpatterns = [
     path('try_login', views.try_login, name="try_login"),
     path('try_logout', views.try_logout, name="try_logout"),
     path('get_value', views.get_value, name='get_value'),
-    path('trade', views.coinlist1, name="trade"),
 ]
 
 # Register your models here.
