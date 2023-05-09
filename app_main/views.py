@@ -1,3 +1,4 @@
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -21,11 +22,16 @@ def try_login(request):
         if user is not None:
             auth.login(request, user)
             #loginList.append(user[0].user_id)
-            return render(request, 'trade')
+            return redirect('/trade')
         else:
             return HttpResponse("<script>alert('아이디 또는 패스워드가 일치하지 않습니다.');location.href='/';</script>")
     else:
         return redirect('/')
+
+# @require_POST
+def try_logout(request):
+    auth.logout(request)
+    return redirect('/')
 
 def get_value(request):
     coins = CoinList.objects.all()

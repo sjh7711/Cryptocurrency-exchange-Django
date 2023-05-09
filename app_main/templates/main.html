@@ -40,7 +40,13 @@
                               <h1 class="h text-gray-900 mb-2">Coin On</h1>
                           </div>
                             {% if user.is_authenticated %}
-                            <h3 class="h text-gray-900 mb-2">{{ user.username }}님 환영합니다.</h3> 
+                            <h3 class="h text-gray-900 mb-2">{{ user.username }}</h3> 
+                            <div class="text-center">
+                              <a href="trade">Go trade</a>
+                            </div>
+                            <div class="text-center">
+                              <a href="try_logout">로그아웃</a>
+                            </div>
                             {% else %}
                            <form class="user" method="post" action="{% url 'try_login' %}">
                               {% csrf_token %}
@@ -55,7 +61,6 @@
                                 <input type="submit" class="btn btn-primary btn-user btn-block" value="로그인" style="font-size:20px;">
                               <hr>
                           </form>
-                          {% endif %}
                           <hr>
                           <div class="text-center">
                             <a href="signup">회원가입</a>
@@ -64,6 +69,7 @@
                           <div class="text-center">
                             <a href="forgot-password.html">비밀번호 찾기</a>
                           </div>
+                          {% endif %}
                       </div>
                   </div>
               </div>
