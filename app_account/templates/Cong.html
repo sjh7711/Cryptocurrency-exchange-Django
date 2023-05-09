@@ -1,5 +1,9 @@
 <!-- {% load static %}
-<link rel = "stylesheet" type ="text/css" href ="{% static 'bootstrap.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+
+<form action="{% url 'account' %}" method="GET">
+    <button type="submit">축하합니다</button>
+</form> -->
 
 <!DOCTYPE html> 
 {% load static %}
@@ -156,24 +160,26 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">입금/출금 내역</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">계좌 발급 완료</h6>
                         </div>
                         <div class="card-body">
                                 <div class="mb-4"></div>
-                                <table class = "table table-bordered">
-                                    {%for data in krw_log_list%}
-                                        <tr>
-                                            <th>거래 시간</th>
-                                            <th class="text-right">입금 / 출금</th>
-                                            <th class="text-right">총 금액</th>
-                                        </tr>
-                                        <tr>
-                                            <td id="total_buy_price", class="text-right">{{data.cont_time}}</td>
-                                            <td id="holding_KRW", class="text-right">{{data.cont_type}}</td>
-                                            <td id="total_eval_price", class="text-right">{{data.total_price}}KRW</td>
-                                        </tr>
-                                    {%endfor%}
-                                </table>             
+                                <strong>지금부터 다음과 같은 서비스를 지원받을 수 있습니다.</strong>
+                                <br>
+                                    <ul>
+                                        <br>
+                                        <li>입금 / 출금 기능</li>
+                                        <br>
+                                        <li>최초 계좌 발급 : 100,000,000 KRW 입금</li>
+                                        <br>
+                                    </ul>
+                                <div class="my-2"></div>
+                                    <a href="/account" class="btn btn-primary btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                        <span class="text">Coin ON 서비스 이용</span>
+                                    </a>               
                         </div>
                     </div>
 
@@ -242,18 +248,3 @@
     <script src={% static "js/demo/datatables-demo.js" %}></script>
 
 </body>
-
-</html>
-    <div class="container">
-        <table class = "table table-bordered">
-            {%for data in krw_log_list%}
-                <tr>
-                    <td id="holding_KRW">입금/출금:{{data.cont_type}}KRW</td>
-                </tr>
-                <tr>
-                    <td id="total_buy_price">체결시간:{{data.cont_time}}KRW</td>
-                    <td id="total_eval_price">총금액:{{data.total_price}}KRW</td>
-                </tr>
-            {%endfor%}
-        </table>
-    </div>
