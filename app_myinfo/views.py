@@ -14,6 +14,4 @@ LOGIN_URL = href="{% url 'main' %}"
 @login_required
 @csrf_exempt
 def myinfo(request):
-    aa = auth.get_user(request)
-    print(aa.check_passwor)
     return render(request, "myinfo.html")
