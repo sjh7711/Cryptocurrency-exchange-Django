@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import auth
-from .models import *
+from app_holding.models import *
 from app_holding.module import Calc
 
 import pyupbit
@@ -15,7 +15,7 @@ import pyupbit
 @login_required
 @csrf_exempt
 def holding(request):
-    info_user_id=auth.get_user(request).id
+    info_user_pk=auth.get_user(request).id
 
     # 코인 정보 조회
     tickers = pyupbit.get_tickers(fiat="KRW")

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib import auth
 
-from .models import *
+from app_holding.models import *
 from app_tradelog.module import module
 
 import pyupbit
@@ -16,7 +16,7 @@ import pyupbit
 @login_required
 @csrf_exempt
 def tradelog(request):
-    info_user_pk=auth.get_user().id
+    info_user_pk=auth.get_user(request).id
     trade_data = TradeList.objects.values().filter(user_pk='{}'.format(info_user_pk)).exclude(coin_pk=0)
     coin_data = CoinList.objects.values().exclude(coin_pk=0)
 
