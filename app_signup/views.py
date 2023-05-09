@@ -1,8 +1,9 @@
-from .models import UserList
+# from .models import UserList
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from .form import User_Form, Passwd_Form
 from django.contrib.auth.models import User
+from .models import AuthUser
 
 @csrf_exempt
 def signup(request):
@@ -13,7 +14,7 @@ def signup(request):
             return render(request, 'exists.html')
         elif form.is_valid():
             form.save()
-        return redirect('main')
+            return redirect('main')
     else:
         form = User_Form()
     return render(request, 'sign-up.html', {'form':form} )
@@ -23,10 +24,10 @@ def signup(request):
 def forgot(request):
     if request.method == 'POST':
         form = Passwd_Form(request.POST)
-        getuser = UserList.objects.filter(user_id=request.POST['user_id'], user_pn=request.POST['user_pn'], user_em=request.POST['user_em'],)
+        getuser = AuthUser.objects.filter(username=request.POST['username'], email=request.POST['email'],)
         if getuser.exists():
-            password = list(getuser.values_list('user_pw', flat=True))[0]
-            return render(request, 'get-passwd.html', {'password':password})
+            passwd = list(getuser.values_list('date_joined', flat=True))[0]
+            return render(request, 'get-passwd.html', {'password':passwd})
     else:
         form = Passwd_Form()
     return render(request, 'forgot-passwd.html', {'form':form} )
