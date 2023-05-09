@@ -1,1 +1,9 @@
 *.pyc
+*.pot
+*.log
+__pycache__/
+local_settings.py
+db.splite3
+db.sqlite3-journal
+media
+secrets.json
