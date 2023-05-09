@@ -130,14 +130,14 @@ class TradeList(models.Model):
     trade_pk = models.BigAutoField(primary_key=True) 
     user_pk = models.IntegerField()
     coin_pk = models.IntegerField()
-    tlog_cont_time = models.FloatField(blank=True, null=True)
+    tlog_cont_time = models.BigIntegerField(blank=True, null=True)
     tlog_cont_type = models.CharField(max_length=2)
     tlog_coin_amnt = models.BigIntegerField()
-    tlog_trade_price = models.IntegerField()
+    tlog_trade_price = models.BigIntegerField()
     tlog_total_price = models.BigIntegerField()
-    tlog_charge = models.IntegerField()
-    tlog_earn_rate = models.IntegerField(blank=True, null=True)
-    tlog_order_time = models.FloatField()
+    tlog_charge = models.BigIntegerField()
+    tlog_earn_rate = models.BigIntegerField(blank=True, null=True)
+    tlog_order_time = models.BigIntegerField()
 
     class Meta:
         managed = False
