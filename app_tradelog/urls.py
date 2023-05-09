@@ -19,5 +19,5 @@ from django.urls import path, include
 from app_tradelog import views
 
 urlpatterns = [
-    path('', views.tradelog),
+    path('', views.tradelog, name='tradelog'),
 ]

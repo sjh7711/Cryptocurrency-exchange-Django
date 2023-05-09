@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
+from django.contrib import auth
 
 from .models import *
 from app_tradelog.module import module
@@ -10,9 +13,10 @@ import pyupbit
 # Create your views here.
 
 # 거래내역 페이지
+@login_required
 @csrf_exempt
 def tradelog(request):
-    info_user_pk=1
+    info_user_pk=auth.get_user().id
     trade_data = TradeList.objects.values().filter(user_pk='{}'.format(info_user_pk)).exclude(coin_pk=0)
     coin_data = CoinList.objects.values().exclude(coin_pk=0)
 
@@ -29,10 +33,11 @@ def tradelog(request):
                 log_dict["coin_name"] = coin_data[j]["coin_id"][4:]
                      
         # 1. 체결시간
-        if trade_data[i]["tlog_cont_time"] is not None:
-            log_dict["cont_time"] = module.UtoD(trade_data[i]["tlog_cont_time"])
-        else:
+        if trade_data[i]["tlog_cont_time"] is None:
             log_dict["cont_time"] = '-'
+        else:
+            log_dict["cont_time"] = module.UtoD(trade_data[i]["tlog_cont_time"])
+            
         # 2. 주문시간
         log_dict["order_time"] = module.UtoD(trade_data[i]["tlog_order_time"])
         # 4. 매수/매도

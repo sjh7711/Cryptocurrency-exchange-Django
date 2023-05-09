@@ -19,6 +19,6 @@ from django.urls import path, include
 from app_account import views
 
 urlpatterns = [
-    path('', views.account),
-    path('check_account/', views.Cong), 
+    path('', views.account, name='account'),
+    path('Cong/', views.Cong, name='Cong'), 
 ]
