@@ -50,6 +50,12 @@ def get_value(request):
     # return the value as JSON
     return JsonResponse(result)
 
+# @csrf_exempt
+# def coinlist(request):
+#     #return redirect(url)
+#     coins = CoinList.objects.all()
+#     return render(request, "signup.html", {"coins":coins})
+
 # Create your views here.
 
 # topics = [

@@ -12,4 +12,4 @@ import time
 @login_required
 @csrf_exempt
 def myinfo(request):
-    return render(request, "myinfo.html")
+    return render(request, "myinfo.html", {"id":auth.get_user(request).username} )
