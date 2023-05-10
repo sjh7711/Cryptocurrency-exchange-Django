@@ -34,7 +34,7 @@ def try_logout(request):
     return redirect('/')
 
 def get_value(request):
-    coins = CoinList.objects.all()
+    coins = CoinList.objects.all()[1:]
     nowPrice = pyupbit.get_current_price(list(map(lambda x:x.coin_id, coins)))
     
     result = {}
