@@ -52,6 +52,12 @@ def get_value(request):
     # get the value from wherever you store it (e.g. database, cache, etc.)
 
 
+# @csrf_exempt
+# def coinlist(request):
+#     #return redirect(url)
+#     coins = CoinList.objects.all()
+#     return render(request, "signup.html", {"coins":coins})
+
 # Create your views here.
 
 # topics = [
