@@ -9,8 +9,6 @@ from django.contrib import messages
 import pyupbit
 import time
 
-LOGIN_URL = href="{% url 'main' %}"
-
 @login_required
 @csrf_exempt
 def myinfo(request):
