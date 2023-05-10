@@ -37,7 +37,7 @@ def account(request):
             krw_log_dict["cont_type"] = krw_trade_data[i]["tlog_cont_type"]
 
             # 2. 입금/출금 시간
-            krw_log_dict["cont_time"] = module.UtoD(krw_trade_data[i]["tlog_cont_time"])
+            krw_log_dict["cont_time"] = module.UtoD(krw_trade_data[i]["tlog_cont_time"]/10000)
 
             # 3. 입금/출금액
             krw_log_dict["total_price"] = krw_trade_data[i]["tlog_total_price"]
@@ -94,9 +94,9 @@ def Cong(request):
     #                             tlog_earn_rate=0, tlog_order_time=time())
     # krw_trade_data.save()
 
-    TradeList.objects.create(user_pk='{}'.format(info_user_pk), coin_pk=0,tlog_cont_time=time(), tlog_cont_type='입금',\
+    TradeList.objects.create(user_pk='{}'.format(info_user_pk), coin_pk=0,tlog_cont_time=time()*10000, tlog_cont_type='입금',\
                                 tlog_coin_amnt=100000000, tlog_trade_price=1, tlog_total_price=100000000, tlog_charge=0,\
-                                tlog_earn_rate=0, tlog_order_time=time())
+                                tlog_earn_rate=0, tlog_order_time=time()*10000)
 
     # wallet_insert = WalletList(user_pk='{}'.format(info_user_pk), coin_pk=1, wallet_addr='0', wallet_coin_amnt=0, wallet_aver_price=0)
     # wallet_insert.save()

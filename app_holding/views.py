@@ -57,7 +57,7 @@ def holding(request):
                         total_eval_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * nowPrice["{}".format(coin_data[j]["coin_id"])] # 총 평가금액
                         # 하단부 6.수익률(%)
                         if wallet_data[i]["wallet_aver_price"] != 0:
-                            holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])]*10000, wallet_data[i]["wallet_aver_price"])
+                            holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])], wallet_data[i]["wallet_aver_price"]/10000)
                         else:
                             holding_dict_bot["Per_return"] = 0
 
@@ -130,7 +130,7 @@ def holding(request):
                         total_eval_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * nowPrice["{}".format(coin_data[j]["coin_id"])] # 총 평가금액
                         # 하단부 6.수익률(%)
                         if wallet_data[i]["wallet_aver_price"] != 0:
-                            holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])]*10000, wallet_data[i]["wallet_aver_price"])
+                            holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])], wallet_data[i]["wallet_aver_price"]/10000)
                         else:
                             holding_dict_bot["Per_return"] = 0
 

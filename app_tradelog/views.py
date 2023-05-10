@@ -36,18 +36,18 @@ def tradelog(request):
         if trade_data[i]["tlog_cont_time"] is None:
             log_dict["cont_time"] = '-'
         else:
-            log_dict["cont_time"] = module.UtoD(trade_data[i]["tlog_cont_time"])
+            log_dict["cont_time"] = module.UtoD(trade_data[i]["tlog_cont_time"]/10000)
             
         # 2. 주문시간
-        log_dict["order_time"] = module.UtoD(trade_data[i]["tlog_order_time"])
+        log_dict["order_time"] = module.UtoD(trade_data[i]["tlog_order_time"]/10000)
         # 4. 매수/매도
         log_dict["cont_type"] = trade_data[i]["tlog_cont_type"]
         # 5. 코인량
-        log_dict["coin_amnt"] = trade_data[i]["tlog_coin_amnt"]
+        log_dict["coin_amnt"] = trade_data[i]["tlog_coin_amnt"] / 10000
         # 6. 거래단가
-        log_dict["trade_price"] = trade_data[i]["tlog_trade_price"]
+        log_dict["trade_price"] = trade_data[i]["tlog_trade_price"] /10000
         # 7. 총금액
-        log_dict["total_price"] = trade_data[i]["tlog_total_price"]
+        log_dict["total_price"] = trade_data[i]["tlog_total_price"] / 100000000
 
         log_list.append(log_dict)
 

@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
+from django.contrib import auth
+
 from app_trade.models import *
+
+from time import time
 
 import pyupbit
 
@@ -156,6 +160,12 @@ def trade(request):
     # order_list_updown = [ {"거래타입":"매도", "가격":"-" },{"거래타입":"매도", "가격":"-" }, {"거래타입":"매도", "가격":"-" },
     #                      {"거래타입":"매수", "가격":"-" }, ...]
 
+
+
+
+
+    # 보유 krw 반환해야함.
+
     
 
     return render(request, "trade.html", {"coin_list":coin_list})
@@ -208,14 +218,193 @@ def trade(request):
 #     return render(request, 'trade.html',({"tickers":tickers, "prices":prices, "list_data":list_data}))
 
 
+# coin_name_list = []
+
+# @login_required
+# @csrf_exempt
+# def submit_name(request):
+#     if request.method == "POST":
+#         coin_name = request.POST.get('coin_name')
+#         return coin_name_list[0] = '{}'.format(coin_name)
+
+
+# @csrf_exempt
+# def my_view(request):
+#     if request.method == 'POST':
+#         return HttpResponse(request.POST)
+
+
+@login_required
+@csrf_exempt
+def coin_name_data(request):
+    if request.method == "POST":
+        global coin_name  
+        coin_name = request.POST.get('coin_name')
+
+        return_list = []
+        tickers = pyupbit.get_tickers(fiat= "KRW")
+        nowPrice = pyupbit.get_current_price(tickers)
+
+        RealTime_price = nowPrice["{}".format(coin_name)]
+        return_dict = {
+            "coin_name":coin_name,
+            "coin_price":RealTime_price
+        }
+        return_list.append(return_dict)
+
+        coin_data_chart = CoinList.objects.values().exclude(coin_pk=0)
+        coin_list_chart = []
+
+        for i in range(0, len(coin_data_chart)):
+            coin_dict_chart = {}
+            coin_dict_chart["coin_name"] = coin_data_chart[i]["coin_id"]
+            coin_dict_chart["coin_price"] = nowPrice["{}".format(coin_data_chart[i]["coin_id"])]
+            coin_list_chart.append(coin_dict_chart)
+
+        cont_type = request.POST.get("inlineRadioOptions") # 매수 : options1, 매도 : options2
+        order_price = request.POST.get("order_price")
+        order_amnt = request.POST.get("order_number")
+
+        if coin_name is None:
+            return render(request, "trade.html", {"coin_list":coin_list_chart})
+
+        
+        elif order_price is None:
+            return render(request, "trade.html", {"coin_data" : return_list, "coin_list":coin_list_chart})
+            # return HttpResponse({"coin_data" : return_list, "coin_list":coin_list_chart})
+
+
 
 @login_required
 @csrf_exempt
 def submit(request):
+    info_user_pk=auth.get_user(request).id
+
+    coin_name = request.POST.get('coin_name')
+
+    coin_data = CoinList.objects.values()
+    coin_data_list = []
+    for data in coin_data:
+        coin_data_list.append(data)
+
+    wallet_data = WalletList.objects.values().filter(user_pk='{}'.format(info_user_pk))
+    wallet_data_list = []
+    for data in wallet_data:
+        wallet_data_list.append(data)
+ 
+    coin_chart = CoinList.objects.values().exclude(coin_pk=0)
+    coin_chart_list = []
+    for data in coin_chart:
+        coin_chart_list.append(data)
+
+    # for i in range(0, len(coin_data)):
+    #     coin_dict = {}
+    #     coin_dict["coin_name"] = coin_data[i]["coin_id"]
+    #     coin_dict["coin_price"] = prices["{}".format(coin_data[i]["coin_id"])]
+    #     coin_list.append(coin_dict)
+
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        # 양식으로부터 제출된 데이터를 처리하는 코드 작성
-        # return HttpResponse("제출된 데이터: 이름={}, 이메일={}, 비밀번호={}".format(name, email, password))
+        # name = request.POST.get("name")
+
+        return_list = []
+        tickers = pyupbit.get_tickers(fiat= "KRW")
+        nowPrice = pyupbit.get_current_price(tickers)
+
+        RealTime_price = nowPrice["{}".format(coin_name)]
+        return_dict = {
+            "coin_name":coin_name,
+            "coin_price":RealTime_price
+        }
+        return_list.append(return_dict)
+
+        coin_data_chart = CoinList.objects.values().exclude(coin_pk=0)
+        coin_list_chart = []
+
+        for i in range(0, len(coin_data_chart)):
+            coin_dict_chart = {}
+            coin_dict_chart["coin_name"] = coin_data_chart[i]["coin_id"]
+            coin_dict_chart["coin_price"] = nowPrice["{}".format(coin_data_chart[i]["coin_id"])]
+            coin_list_chart.append(coin_dict_chart)
+
+        cont_type = request.POST.get("inlineRadioOptions") # 매수 : options1, 매도 : options2
+        order_price = request.POST.get("order_price")
+        order_amnt = request.POST.get("order_number")
+
+        if coin_name is None:
+            return render(request, "trade.html", {"coin_list":coin_list_chart})
+        
+        elif float(order_price) is None:
+            return render(request, "trade.html", {"coin_data" : return_list, "coin_list":coin_list_chart})
+        
+        else:
+            for i in range(0, len(coin_data)):
+                if coin_name != coin_data[i]["coin_id"]:
+                    continue
+                else:
+                    info_coin_pk = coin_data[i]["coin_pk"]
+                    break
+
+            # order_price 음수 값 체크
+            if (float(order_price) < 0):
+                # 에러 페이지 - 이유1.:음수 값
+                return render(request, "error1.html")
+    
+
+            # 1. 거래 가능 여부 판단
+            # 1.1. 매도 : 보유 코인 여부
+            if cont_type == 'option2':
+                wallet_data = wallet_data.filter(coin_pk='{}'.format(info_coin_pk))
+                # wallet_data_list = []
+                # for data in wallet_data:
+                #     wallet_data_list.append(data)
+                for i in range(0, len(wallet_data)):
+                    if wallet_data[i]["wallet_coin_amnt"] / 10000 < float(order_amnt):
+                        return render(request, "error2.html")
+                    # 오류 페이지 - 이유2.: 보유 코인 부족
+                    # return render()
+                else:
+                    # 1.1.1. TradeList Create
+                    TradeList.objects.create(user_pk=f'{info_user_pk}', coin_pk=f'{info_coin_pk}', tlog_cont_type=f'{"매도"}',\
+                                    tlog_coin_amnt=f'{int(float(order_amnt)*10000)}', tlog_trade_price=f'{int(float(order_price)*10000)}',\
+                                    tlog_order_time=f'{time()*10000}', tlog_total_price=f'{int(float(order_amnt)*10000)*int(float(order_price)*10000)}',\
+                                    tlog_charge=0)
+
+                    # 1.1.2. WalletList Update
+                        # queryset = Post.objects.all()
+                        # queryset.update(title='test title') # 일괄 update 요청
+                        # change_coin_amnt = (wallet_data["wallet_coin_amnt"]/10000 - order_amnt)*10000
+                        # wallet_data.update(wallet_coin_amnt=change_coin_amnt)
+
+            # 1.2. 매수 : 보유 KRW 여부
+            elif cont_type == 'option1':
+                wallet_data = wallet_data.filter(coin_pk=0)
+                # wallet_data_list = []
+                # for data in wallet_data:
+                #     wallet_data_list.append(data)
+
+                for i in range(0, len(wallet_data)):
+                    if wallet_data_list[i]["wallet_coin_amnt"] < (float(order_price)) * (float(order_amnt)):
+                    # 에러페이지 리턴 - 이유3. : 보유 KRW 부족
+                        return render(request, "error3.html")
+                
+                else: 
+                    # 1.2.1. TradeList Create
+                    TradeList.objects.create(user_pk=f'{info_user_pk}', coin_pk=f'{info_coin_pk}', tlog_cont_type=f'{"매수"}',\
+                                    tlog_coin_amnt=f'{int(float(order_amnt)*10000)}', tlog_trade_price=f'{int(float(order_price)*10000)}',\
+                                    tlog_order_time=f'{time()*10000}', tlog_total_price=f'{int(float(order_amnt)*10000)*int(float(order_price)*10000)}',\
+                                    tlog_charge=0)
+
+                    # 1.2.2. WalletList Update
+                        # 체결될 때 업데이트
+        
+        return render(request, "trade.html", {"coin_data" : return_list, "coin_list":coin_list_chart})
+                
+
+        # 2. 
+        # TradeList.objects.create(user_pk=f'{}', coin_pk=f'{}', tlog_cont_type=f'{}',\
+        #                          tlog_cont_amnt=f'{}', tlog_trade_price=f'{}',\
+        #                          tlog_earn_rate=f'{}', tlog_order_time=f'{}')
+
+        # return render(request, "trade.html")
+
     
