@@ -164,6 +164,7 @@
                                             <th>거래량</th>
                                             <th>거래단가</th>
                                             <th>총 거래금액</th>
+                                            <th>수익률</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -176,6 +177,15 @@
                                             <td class="text-right">{{data.coin_amnt}}</td>
                                             <td class="text-right">{{data.trade_price}}</td>
                                             <td class="text-right">{{data.total_price}} KRW</td>
+                                            {% if data.earn_rate == 'NULL' %}
+                                                <td class="test-right">0.0 %</td>
+                                            {% elif data.earn_rate == 0 %}
+                                                <td class="test-right">0.0 %</td>
+                                            {% elif data.earn_rate > 0 %}
+                                                <td class="test-right"><span style="color: #ff0000;">{{data.earn_rate}}</span> %</td>
+                                            {% else %}
+                                                <td class="test-right"><span style="color: #0000FF;">{{data.earn_rate}}</span> %</td>
+                                            {% endif %}
                                         </tr>
                                         {%endfor%}
                                     </tbody>

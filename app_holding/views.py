@@ -60,7 +60,6 @@ def holding(request):
                             holding_dict_bot["Per_return"] = Calc.Per_return(nowPrice["{}".format(coin_data[j]["coin_id"])], wallet_data[i]["wallet_aver_price"]/10000)
                         else:
                             holding_dict_bot["Per_return"] = 0
-
                 
                 # 하단부 2.보유수량 
                 holding_dict_bot["wallet_coin_amnt"] = wallet_data[i]["wallet_coin_amnt"] / 10000
@@ -69,7 +68,7 @@ def holding(request):
                 # 하단부 4.매수금액 
                 holding_dict_bot["buy_price"] = (wallet_data[i]["wallet_coin_amnt"] / 10000) * (wallet_data[i]["wallet_aver_price"] /10000)
                 total_buy_price += (wallet_data[i]["wallet_coin_amnt"]/10000) * (wallet_data[i]["wallet_aver_price"] / 10000) # 총 매수 금액
-
+                
                 holding_list_bot.append(holding_dict_bot)
     
         # 상단부 2. 총 매수금액
@@ -98,13 +97,10 @@ def holding(request):
         wallet_data = WalletList.objects.values().filter(user_pk='{}'.format(info_user_pk))
 
         # Setting
-        holding_list_top = []
-        holding_dict_top = {}
+        holding_dict_top2 = {}
+        holding_dict_bot2 = {}
         total_buy_price=0
         total_eval_price=0
-
-        holding_list_bot = []
-        holding_dict_bot2 = {}
 
 
         for i in range(0, len(wallet_data)):
@@ -112,7 +108,7 @@ def holding(request):
 
             if wallet_data[i]["coin_pk"] == 0:
                 # 상단부 1. 보유 KRW
-                holding_dict_top["holding_KRW"] = wallet_data[i]["wallet_coin_amnt"]
+                holding_dict_top2["holding_KRW"] = wallet_data[i]["wallet_coin_amnt"]
         
             else:
                 holding_dict_bot = {}
@@ -146,24 +142,22 @@ def holding(request):
                 holding_dict_bot2["{}".format(wallet_coin_pk)] = holding_dict_bot
     
         # 상단부 2. 총 매수금액
-        holding_dict_top["total_buy_price"] = round(total_buy_price, 2)
+        holding_dict_top2["total_buy_price"] = round(total_buy_price, 2)
 
         # 상단부 3. 총 평가 금액
-        holding_dict_top["total_eval_price"] = round(total_eval_price, 2)
+        holding_dict_top2["total_eval_price"] = round(total_eval_price, 2)
 
         # 상단부 4. 총 평가손익
-        holding_dict_top["total_return"] = round((total_eval_price - total_buy_price), 2)
+        holding_dict_top2["total_return"] = round((total_eval_price - total_buy_price), 2)
 
         # 상단부 5. 총 수익률
         if total_eval_price != 0:
-            holding_dict_top["total_Per_return"] = Calc.Total_Per_return((total_eval_price-total_buy_price) , total_eval_price)
+            holding_dict_top2["total_Per_return"] = Calc.Total_Per_return((total_eval_price-total_buy_price) , total_eval_price)
         else:
-            holding_dict_top["total_Per_return"] = 0
-
-        holding_list_top.append(holding_dict_top)
+            holding_dict_top2["total_Per_return"] = 0
 
         data = {
-            "holding_dict_top":holding_dict_top,
+            "holding_dict_top2":holding_dict_top2,
             "holding_dict_bot2":holding_dict_bot2
         }
 

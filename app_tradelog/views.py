@@ -48,6 +48,11 @@ def tradelog(request):
         log_dict["trade_price"] = trade_data[i]["tlog_trade_price"] /10000
         # 7. 총금액
         log_dict["total_price"] = trade_data[i]["tlog_total_price"] / 100000000
+        # 8. 수익률
+        if trade_data[i]["tlog_earn_rate"] == None:
+            log_dict["earn_rate"] = 'NULL'
+        else:
+            log_dict["earn_rate"] = trade_data[i]["tlog_earn_rate"] / 10000
 
         log_list.append(log_dict)
 
