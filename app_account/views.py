@@ -28,7 +28,7 @@ def account(request):
     if not krw_wallet_data.exists() or krw_wallet_data[0]["wallet_addr"] is None:
 
     # if krw_wallet_data[0]["wallet_addr"] == '0':
-        return render(request, "before_account.html")
+        return render(request, "before_account.html", {"id":auth.get_user(request).username})
     
     else:
         for i in range(0, len(krw_trade_data)):
@@ -42,7 +42,7 @@ def account(request):
             # 3. 입금/출금액
             krw_log_dict["total_price"] = krw_trade_data[i]["tlog_total_price"]
             krw_log_list.append(krw_log_dict)
-        return render(request, "after_account.html", {"krw_log_list":krw_log_list})
+        return render(request, "after_account.html", {"krw_log_list":krw_log_list, "id":auth.get_user(request).username})
 
     """ # 계좌 개설 전 페이지
     for i in range(0, len(krw_wallet_data)):
@@ -110,5 +110,5 @@ def Cong(request):
         #                            wallet_addr='0', wallet_coin_amnt=0, wallet_aver_price=0)
         # wallet_insert.save()
 
-    return render(request, "Cong.html")
+    return render(request, "Cong.html", {"id":auth.get_user(request).username})
 

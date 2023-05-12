@@ -168,7 +168,7 @@ def trade(request):
 
     
 
-    return render(request, "trade.html", {"coin_list":coin_list})
+    return render(request, "trade.html", {"coin_list":coin_list, "id":auth.get_user(request).username})
     # return JsonResponse({'tickers':prices})
 
 # def trade(request):
