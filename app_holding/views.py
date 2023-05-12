@@ -90,7 +90,7 @@ def holding(request):
         holding_list_top.append(holding_dict_top)
 
 
-        return render(request, "holding.html", {"holding_list_top":holding_list_top, "holding_list_bot":holding_list_bot})
+        return render(request, "holding.html", {"holding_list_top":holding_list_top, "holding_list_bot":holding_list_bot, "id":auth.get_user(request).username})
 
     # process the AJAX request and return JSON response
     elif request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':

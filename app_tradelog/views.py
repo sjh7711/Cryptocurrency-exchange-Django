@@ -7,6 +7,7 @@ from django.contrib import auth
 
 from app_tradelog.models import *
 from app_tradelog.module import module
+from app_myinfo.views import myinfo
 
 import pyupbit
 
@@ -51,4 +52,4 @@ def tradelog(request):
 
         log_list.append(log_dict)
 
-    return render(request, "tradelog.html", {"log_list":log_list})
+    return render(request, "tradelog.html", {"log_list":log_list, "id":auth.get_user(request).username})
